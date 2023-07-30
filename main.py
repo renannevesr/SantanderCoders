@@ -26,6 +26,7 @@ def main():
             repository.add_user(name, id, contacts, phone, address)
 
         elif option == '2':
+            contacts, id = loadJSON.load()
             while True:
                 idDelete = input("Insira o ID do usuário que deseja excluir: ")
                 if idDelete not in contacts:
@@ -33,6 +34,28 @@ def main():
                 else:
                     repository.delete_user(idDelete, contacts)
                     break
+        elif option == '3':
+            contacts, id = loadJSON.load()
+            while True:
+                idToUpdate = input("Insira o ID do usuário: ")
+                if idToUpdate not in contacts:
+                    print("Usuário não encontrado!")
+                else:
+                    print("Qual informação deseja alterar?")
+                    print("1 - Nome")
+                    print("2 - Telefone")
+                    print("3 - Endereço")
+                    field = input()
+
+                    if field not in ['1', '2', '3']:
+                        print("Opção inválida.")
+                    else:
+                        new_value = input(
+                            f"Insira o novo valor para a opção {field}: ")
+                        repository.update_user(
+                            idToUpdate, field, new_value, contacts)
+                        break
+
         elif option == '6':
             print("Saindo...")
             break

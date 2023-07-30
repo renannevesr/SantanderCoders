@@ -26,3 +26,20 @@ def delete_user(ids_to_delete, contacts):
             user_data["Status"] = False
 
     loadJSON.save(contacts)
+
+
+def update_user(id_to_update, field, new_value, contacts):
+    if id_to_update in contacts:
+        user_data = contacts[id_to_update]
+        if field == '1':
+            user_data["Nome"] = new_value
+        elif field == '2':
+            user_data["Telefone"] = new_value
+        elif field == '3':
+            user_data["Endereço"] = new_value
+        else:
+            print("Opção inválida.")
+    else:
+        print("Usuário não encontrado.")
+
+    loadJSON.save(contacts)
