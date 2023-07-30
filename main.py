@@ -55,7 +55,14 @@ def main():
                         repository.update_user(
                             idToUpdate, field, new_value, contacts)
                         break
-
+        elif option == '4':
+            while True:
+                idToShow = input("Insira o ID do usuário: ")
+                if idToShow not in contacts:
+                    print("Usuário não encontrado!")
+                else:
+                    repository.show_user(idToShow, contacts)
+                    break
         elif option == '6':
             print("Saindo...")
             break

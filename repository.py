@@ -43,3 +43,13 @@ def update_user(id_to_update, field, new_value, contacts):
         print("Usuário não encontrado.")
 
     loadJSON.save(contacts)
+
+
+def show_user(id, contacts):
+    if id in contacts:
+        user_data = contacts[id]
+        print(f"Nome: {user_data['Nome']}")
+        print(f"Telefone: {user_data['Telefone']}")
+        print(f"Endereço: {user_data['Endereço']}")
+    else:
+        print("Usuário não encontrado.")
