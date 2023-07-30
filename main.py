@@ -1,17 +1,9 @@
-import json
-
-
-def load_contacts():
-    try:
-        with open('projetoModuloII.json', 'r') as file:
-            contacts = json.load(file)
-    except FileNotFoundError:
-        contacts = []
-    return contacts
+import loadJSON
+import repository
 
 
 def main():
-    contacts = load_contacts()
+    contacts, id = loadJSON.load()
     while True:
         print("\nBoas vindas ao nosso sistema:")
         print("1 - Inserir usuário")
@@ -23,10 +15,11 @@ def main():
 
         option = input("Escolha uma opção: ")
         if option == '1':
-            print(contacts)
-            # name = input("Name: ")
-            # email = input("Email: ")
-            # phone = input("Phone: ")
+            name = input("Name: ")
+            phone = input("Phone: ")
+            address = input("Address: ")
+
+            repository.add_user(name, id, contacts, phone, address)
 
         elif option == '6':
             print("Saindo...")
