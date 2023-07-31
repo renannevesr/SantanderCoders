@@ -22,7 +22,6 @@ def main():
             name = input("Name: ")
             phone = input("Phone: ")
             address = input("Address: ")
-
             repository.add_user(name, id, contacts, phone, address)
 
         elif option == '2':
@@ -34,6 +33,7 @@ def main():
                 else:
                     repository.delete_user(idDelete, contacts)
                     break
+
         elif option == '3':
             contacts, id = loadJSON.load()
             while True:
@@ -55,7 +55,9 @@ def main():
                         repository.update_user(
                             idToUpdate, field, new_value, contacts)
                         break
+
         elif option == '4':
+            contacts, id = loadJSON.load()
             while True:
                 idToShow = input("Insira o ID do usuário: ")
                 if idToShow not in contacts:
@@ -63,6 +65,11 @@ def main():
                 else:
                     repository.show_user(idToShow, contacts)
                     break
+
+        elif option == '5':
+            contacts, id = loadJSON.load()
+            repository.index(contacts)
+
         elif option == '6':
             print("Saindo...")
             break

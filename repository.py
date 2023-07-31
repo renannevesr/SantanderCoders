@@ -16,7 +16,8 @@ def add_user(name, id, contacts, phone="Não Informado", address="Não Informado
             "Endereço": address,
             "ID": id
         }
-    contacts[id] = new_user
+    if new_user is not None:
+        contacts[id] = new_user
     loadJSON.save(contacts)
 
 
@@ -53,3 +54,13 @@ def show_user(id, contacts):
         print(f"Endereço: {user_data['Endereço']}")
     else:
         print("Usuário não encontrado.")
+
+
+def index(contacts):
+    for user_data in contacts.values():
+        if user_data["Status"]:
+            print(f"ID: {user_data['ID']}")
+            print(f"Nome: {user_data['Nome']}")
+            print(f"Telefone: {user_data['Telefone']}")
+            print(f"Endereço: {user_data['Endereço']}")
+            print()
