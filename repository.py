@@ -16,7 +16,6 @@ def add_user(name, id, contacts, phone="Não Informado", address="Não Informado
             "Endereço": address,
             "ID": id
         }
-    if new_user is not None:
         contacts[id] = new_user
     loadJSON.save(contacts)
 
