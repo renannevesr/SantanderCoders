@@ -27,14 +27,21 @@ def main():
                 id = repository.add_user(name, id, contacts, phone, address)
 
         elif option == '2':
-            contacts, id = loadJSON.load()
-            while True:
-                idDelete = input("Insira o ID do usuário que deseja excluir: ")
+            contacts, ids = loadJSON.load()
+            ids_to_delete = input(
+                "Insira os IDs dos usuários que deseja excluir (separados por vírgula): ").split(',')
+            users_not_found = []
+            for idDelete in ids_to_delete:
+                idDelete = idDelete.strip()  # Remover espaços em branco extras, se houver
                 if idDelete not in contacts:
-                    print("Usuário não encontrado!")
+                    users_not_found.append(idDelete)
                 else:
                     repository.delete_user(idDelete, contacts)
-                    break
+
+            if users_not_found:
+                print("Usuários não encontrados:", ", ".join(users_not_found))
+            else:
+                print("Usuários excluídos com sucesso!")
 
         elif option == '3':
             contacts, id = loadJSON.load()
