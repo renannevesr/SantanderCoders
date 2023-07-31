@@ -44,12 +44,25 @@ def main():
                 print("Usuários excluídos com sucesso!")
 
         elif option == '3':
-            contacts, id = loadJSON.load()
+            contacts, _ = loadJSON.load()
+            ids_to_update = []
+
             while True:
-                idToUpdate = input("Insira o ID do usuário: ")
-                if idToUpdate not in contacts:
-                    print("Usuário não encontrado!")
+                id_to_update = input(
+                    "Insira o ID do usuário que deseja editar (ou digite 0 para finalizar): ")
+                if id_to_update == '0':
+                    break
+
+                if id_to_update not in contacts:
+                    print(f"Usuário com ID {id_to_update} não encontrado!")
                 else:
+                    ids_to_update.append(id_to_update)
+
+            if not ids_to_update:
+                print("Nenhum ID válido foi inserido.")
+            else:
+                for id_to_update in ids_to_update:
+                    print("ID do usuário a ser editado:", id_to_update)
                     print("Qual informação deseja alterar?")
                     print("1 - Nome")
                     print("2 - Telefone")
@@ -62,8 +75,7 @@ def main():
                         new_value = input(
                             f"Insira o novo valor para a opção {field}: ")
                         repository.update_user(
-                            idToUpdate, field, new_value, contacts)
-                        break
+                            id_to_update, field, new_value, contacts)
 
         elif option == '4':
             contacts, id = loadJSON.load()
