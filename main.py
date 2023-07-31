@@ -78,14 +78,15 @@ def main():
                             id_to_update, field, new_value, contacts)
 
         elif option == '4':
-            contacts, id = loadJSON.load()
+            contacts, _ = loadJSON.load()
             while True:
-                idToShow = input("Insira o ID do usuário: ")
-                if idToShow not in contacts:
-                    print("Usuário não encontrado!")
-                else:
-                    repository.show_user(idToShow, contacts)
+                id_to_show = input(
+                    "Insira os IDs dos usuários separados por vígulas (ou vazio para sair): ")
+                if not id_to_show:
                     break
+                else:
+                    id_list = id_to_show.split(',')
+                    repository.show_user(*id_list, contacts=contacts)
 
         elif option == '5':
             contacts, id = loadJSON.load()
