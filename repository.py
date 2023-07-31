@@ -9,6 +9,7 @@ def add_user(name, id, contacts, phone="Não Informado", address="Não Informado
             break
     else:
         id += 1
+        print("id", id)
         new_user = {
             "Status": True,
             "Nome": name,
@@ -18,6 +19,7 @@ def add_user(name, id, contacts, phone="Não Informado", address="Não Informado
         }
         contacts[id] = new_user
     loadJSON.save(contacts)
+    return (id)
 
 
 def delete_user(ids_to_delete, contacts):

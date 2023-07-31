@@ -19,10 +19,12 @@ def main():
 
         option = input("Escolha uma opção: ")
         if option == '1':
-            name = input("Name: ")
-            phone = input("Phone: ")
-            address = input("Address: ")
-            repository.add_user(name, id, contacts, phone, address)
+            num_users = int(input("Quantos usuários deseja adicionar? "))
+            for num in range(num_users):
+                name = input("Name: ")
+                phone = input("Phone: ")
+                address = input("Address: ")
+                id = repository.add_user(name, id, contacts, phone, address)
 
         elif option == '2':
             contacts, id = loadJSON.load()
